@@ -5,29 +5,27 @@ import Label from "./Label";
 const AlcButton = ({ 
     text, 
     onPress,
-    flex
+    flex,
+    backgroundColor
 }) => (
-  //<TextInput style={[styles.textInput, {flex}, style]}
-  <TouchableOpacity style={[styles.button, {flex}]}
-    onPress={onPress}
-  >
-    <Label text={text} style={{ left: 0, fontWeight: "bold", color: 'white' }} />
-  </TouchableOpacity>
+    <TouchableOpacity style={[styles.button, {flex}, {backgroundColor}]}
+        onPress={onPress}
+    >
+        <Label text={text} style={{ left: 0, fontWeight: "bold", color: 'white' }} />
+    </TouchableOpacity>
 );
 
-export default AlcButton;
-
 const styles = StyleSheet.create({
-
-  button: {
-    backgroundColor: "black",
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 5,
-    width: 120,
-    height: 45,
-    margin: 5,
-    justifyContent: "center",
-    alignItems: "center"
+    button: {
+        borderColor: "black",
+        borderWidth: 2,
+        borderRadius: 5,
+        width: 120,
+        height: 45,
+        margin: 5,
+        justifyContent: "center",
+        alignItems: "center"
     },
 });
+
+export default AlcButton;

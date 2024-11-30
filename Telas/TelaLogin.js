@@ -31,8 +31,8 @@ const TelaLogin = () => {
 
         <View style={styles.buttons}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between' }}>
-            <AlcButton text={"Login"}/>
-            <AlcButton text={"Cadastrar"}/>
+            <AlcButton text={"Login"} backgroundColor={'black'}/>
+            <AlcButton text={"Cadastrar"} backgroundColor={'black'}/>
           </View>
           <Text style={{color: 'white', textDecorationLine: 'underline', fontWeight: 'bold'}}>Esqueceu sua Senha?</Text>
         </View>

@@ -29,8 +29,8 @@ const TelaCadastro = () => {
           <AlcMainInput placeHolder={"Telefone"} flex={1}/>
         </View>
         <View style={{flexDirection: 'row', backgroundColor: 'blue', justifyContent:'center'}}>
-          <AlcButton text={"Confirmar"} flex={1}/>
-          <AlcButton text={"Sair"} flex={1}/>
+          <AlcButton text={"Confirmar"} flex={1} backgroundColor={'black'}/>
+          <AlcButton text={"Sair"} flex={1} backgroundColor={'black'}/>
         </View>
       </View>
     </SafeAreaView>
