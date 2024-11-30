@@ -6,12 +6,14 @@ import TelaLogin from './Telas/TelaLogin';
 import TelaCadastro from './Telas/TelaCadastro';
 import TelaPrincipal from './Telas/TelaPrincipal';
 import TelaDetalhesVeiculo from './Telas/TelaDetalhesVeiculo';
+import TelaPerfil from './Telas/TelaPerfil';
 
 export default function App() {
   return (
     //<TelaLogin/>
     //<TelaCadastro/>
     //<TelaPrincipal/>
-      <TelaDetalhesVeiculo/>
+    //<TelaDetalhesVeiculo/>
+    <TelaPerfil/>
   );
 }

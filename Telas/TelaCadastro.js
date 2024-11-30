@@ -11,7 +11,7 @@ import Title from '../Components/Title';
 import AlcButton from '../Components/AlcButton';
 import EstilosGlobais from '../Estilos/Globais';
 
-const TelaCadastro = () => {
+const TelaPerfil = () => {
   return (
     <SafeAreaView style={StylesTelaCadastro.container}>
       <View style={EstilosGlobais.title}>
@@ -52,4 +52,4 @@ const StylesTelaCadastro = StyleSheet.create({
   }
 });
 
-export default TelaCadastro;
+export default TelaPerfil;
