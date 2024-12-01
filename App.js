@@ -7,6 +7,7 @@ import TelaCadastro from './Telas/TelaCadastro';
 import TelaPrincipal from './Telas/TelaPrincipal';
 import TelaDetalhesVeiculo from './Telas/TelaDetalhesVeiculo';
 import TelaPerfil from './Telas/TelaPerfil';
+import TelaListaVeiculos from './Telas/TelaListaVeiculos';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
     //<TelaCadastro/>
     //<TelaPrincipal/>
     //<TelaDetalhesVeiculo/>
-    <TelaPerfil/>
+    //<TelaPerfil/>
+    <TelaListaVeiculos/>
   );
 }
