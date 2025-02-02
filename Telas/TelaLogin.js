@@ -15,10 +15,6 @@ import EstilosGlobais from '../Estilos/Globais';
 const TelaLogin = () => {
  return (
     <SafeAreaView style={styles.container}>
-        <View style={EstilosGlobais.title}>
-          <Title/>
-        </View>
-
         <View style={styles.inputs}>
           <AlcMainInput
             placeHolder={"CPF"}
