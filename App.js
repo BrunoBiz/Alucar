@@ -44,9 +44,13 @@ function MyStack() {
         headerTitleStyle: styles.headerTitle,
       }}
     >
-      <Stack.Screen name="Login" component={TelaLogin} /> 
-      <Stack.Screen name="Home" component={TelaPrincipal} /> 
-      <Stack.Screen name="Cadastro" component={TelaCadastro} /> 
+      <Stack.Screen name="Login" component={TelaLogin}/> 
+      <Stack.Screen name="Home" component={TelaPrincipal}/> 
+      <Stack.Screen name="Cadastro" component={TelaCadastro}/> 
+      <Stack.Screen name="Checkout" component={TelaCheckout}/> 
+      <Stack.Screen name="Detalhes" component={TelaDetalhesVeiculo}/> 
+      <Stack.Screen name="Lista" component={TelaListaVeiculos}/> 
+      <Stack.Screen name="Perfil" component={TelaPerfil}/> 
     </Stack.Navigator>
   );
 } 

@@ -43,7 +43,7 @@ const TelaLogin = () => {
       const dbRef3 = db.ref('Produtos/1').remove()
     }
 
-    carregaDados();
+    //carregaDados();
   }, [])
  
   return (
