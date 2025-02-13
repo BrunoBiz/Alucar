@@ -1,5 +1,6 @@
-/* import firebase from "firebase/app"
-import "firebase/firestore"
+import firebase from "firebase/compat/app"; // Correct import for compat
+import "firebase/compat/firestore"; // Correct import for compat
+import "firebase/compat/database";  // Import for the Realtime Database
 
 const firebaseConfig = {
     apiKey: "AIzaSyBto67r5JPtEboY2b-08v60GDsDHSpdAdg",
@@ -10,8 +11,10 @@ const firebaseConfig = {
     appId: "1:550321060997:web:cbb6d519d61dc2fe54bdec"
   };
 
-if(!firebase.apps.length){
-    firebase.initializeApp(firebaseConfig)
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
 }
 
-export default firebaseConfig */
+const db = firebase.database();  // Get the Realtime Database instance
+
+export { firebase, db, firebaseConfig };

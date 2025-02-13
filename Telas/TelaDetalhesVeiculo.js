@@ -14,6 +14,7 @@ import AlcButton from '../Components/AlcButton';
 import EstilosGlobais from '../Estilos/Globais';
 import MapView from 'react-native-maps';
 
+
 const TelaDetalhesVeiculo = () => {
  return (
     <SafeAreaView style={StylesTelaDetalhes.container}>

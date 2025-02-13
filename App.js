@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import { DefaultTheme, colors } from 'react-native-paper';
 
+import firebaseConfig from './src/firebaseConfig';
+
 // Telas
 import TelaLogin from './Telas/TelaLogin';
 import TelaCadastro from './Telas/TelaCadastro';
@@ -34,7 +36,7 @@ export default function App() {
   );
 }
 
- function MyStack() {
+function MyStack() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -44,6 +46,7 @@ export default function App() {
     >
       <Stack.Screen name="Login" component={TelaLogin} /> 
       <Stack.Screen name="Home" component={TelaPrincipal} /> 
+      <Stack.Screen name="Cadastro" component={TelaCadastro} /> 
     </Stack.Navigator>
   );
 } 

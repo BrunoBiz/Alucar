@@ -7,7 +7,8 @@ const AlcMainInput = ({
     onChangeText,
     placeHolder,
     secureTextEntry,
-    flex
+    flex,
+    keyboardType
 }) => (
     <TextInput 
         style={[styles.textInput, {flex}, style]}
@@ -15,6 +16,7 @@ const AlcMainInput = ({
         onChangeText={onChangeText}
         placeholder={placeHolder}
         secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
     />
 );
 
