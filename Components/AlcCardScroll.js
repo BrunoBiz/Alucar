@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { FlatList, View, Image, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const CardVeiculo = ({ source, modeloCarro, descricao, descricao2, portas, capacidade, valorDia}) => {
-    return (
-      <View style={styles.card}>
+  const navigation = useNavigation();
+  return (
+      <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Detalhes')}>
         <View style={styles.cardImagemVeiculoView}>
-          <Image source={ source } style={styles.cardImagemVeiculo} />
+          <Image source={ source } style={styles.cardImagemVeiculo}/>
         </View>
         <View style={styles.cardDadosVeiculo}>
           <Text style={styles.cardModeloVeiculo}>{modeloCarro}</Text>
@@ -22,7 +24,7 @@ const CardVeiculo = ({ source, modeloCarro, descricao, descricao2, portas, capac
             <Image source={require('../Icones/StatusVerde.png')} style={styles.iconeStatus}/>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   

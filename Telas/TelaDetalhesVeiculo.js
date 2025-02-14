@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   View,
@@ -8,19 +9,13 @@ import {
   Image
 } from "react-native";
 
-import AlcMainInput from '../Components/AlcMainInput';
-import Title from '../Components/Title';
 import AlcButton from '../Components/AlcButton';
-import EstilosGlobais from '../Estilos/Globais';
 import MapView from 'react-native-maps';
 
-
 const TelaDetalhesVeiculo = () => {
- return (
+  const navigation = useNavigation();
+    return (
     <SafeAreaView style={StylesTelaDetalhes.container}>
-        <View style={EstilosGlobais.title}>
-          <Title/>
-        </View>
         <View style={StylesTelaDetalhes.card}>
             <View style={StylesTelaDetalhes.carrousel}>
                 <Image source={require('../Imagens/ImagemCarro.jpg')} style={StylesTelaDetalhes.Imagem}/>
@@ -89,7 +84,10 @@ const TelaDetalhesVeiculo = () => {
                 </View>
 
                 <View style={{flex:1, flexDirection:'row', justifyContent:'center', alignContent:'center'}}>
-                    <AlcButton text={'Confirmar'} backgroundColor={'green'}/>
+                    <AlcButton 
+                        text={'Confirmar'} 
+                        backgroundColor={'green'}
+                        onPress={() => navigation.navigate("Checkout")}/>
                 </View>
             </View>
         </View>

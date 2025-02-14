@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
@@ -8,16 +8,13 @@ import {
   Image
 } from "react-native";
 
-import { Searchbar } from 'react-native-paper';
-
-import Title from '../Components/Title';
-import EstilosGlobais from '../Estilos/Globais';
 import AlcMainInput from '../Components/AlcMainInput';
 import RNPickerSelect from 'react-native-picker-select';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import AlcButton from '../Components/AlcButton';
 
 const TelaCheckout = () => {
+  const navigation = useNavigation();
   const [dtInicio, setDtInicio] = useState('2024-01-01');
   const [dtFinal, setDtFinal] = useState('2024-01-01');
 
@@ -35,11 +32,13 @@ const TelaCheckout = () => {
     { label: 'Entrega',      value: 'OptEntrega'},
   ];
 
+  function confirmarCheckout() {
+    alert("Checkout realizado com sucesso!");
+    navigation.navigate("Home");
+  }
+
   return (
     <SafeAreaView style={StylesTelaCheckout.container}>
-        <View style={EstilosGlobais.title}>
-          <Title/>
-        </View>
         <View style={StylesTelaCheckout.card}>
           <View style={StylesTelaCheckout.ViewImagemCarro}>
             <Image source={require('../Imagens/ImagemCarro.jpg')} style={StylesTelaCheckout.Imagem}/>
@@ -87,8 +86,15 @@ const TelaCheckout = () => {
 
           <View style={StylesTelaCheckout.ViewBotoes}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between' }}>
-              <AlcButton text={"Confirmar"} backgroundColor={'green'}/>
-              <AlcButton text={"Sair"} backgroundColor={'red'}/>
+              <AlcButton 
+                text={"Confirmar"} 
+                backgroundColor={'green'}
+                onPress={confirmarCheckout}
+                />
+              <AlcButton 
+                text={"Sair"} 
+                backgroundColor={'red'}
+                onPress={() => navigation.goBack()}/>
             </View>
           </View>
         </View>

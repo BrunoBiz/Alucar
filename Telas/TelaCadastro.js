@@ -22,34 +22,76 @@ const TelaCadastro = () => {
   const [email, setEmail] = useState('')
   const [endereco, setEndereco] = useState('')
   const [numero, setNumero] = useState(0)
-  const [telefone, setTelefone] = useState('')
+  const [telefone, setTelefone] = useState(0)
+
+  function validarDados(){
+    if (nome == ""){
+      alert("Campo nome não informado!")
+      return false
+    }
+
+    if (sobreNome == ""){
+      alert("Campo sobrenome não informado!")
+      return false
+    }
+
+    if (cpf.length != 11){
+      alert("CPF não informado ou inválido!")
+      return false
+    }
+
+    if (senha == ""){
+      alert("Campo senha não informado!")
+      return false
+    }
+
+    if (email == ""){
+      alert("Campo e-mail não informado!")
+      return false
+    }
+
+    if (endereco == ""){
+      alert("Campo endereço\ não informado!")
+      return false
+    }
+
+    if (numero == 0){
+      alert("Campo número não informado!")
+      return false
+    }
+
+    if (telefone == 0){
+      alert("Campo telefone não informado!")
+      return false
+    }
+
+    return true
+  }
 
   function cadastrarDados(){
-    //() => {alert(`O nome digitado é: ${nome} o numero digitado é ${numero}`);}
-    console.log(cpf)
-    const dbRef = db.ref(`Usuarios/${cpf}`).once('value', (snapshot) => {
-      const userData = snapshot.val();
-      console.log(userData)
-      if (userData) { // Valida se o CPF já está cadastrado
-        alert("Usuário já cadastrado!")
-        setNome('');
-      } else {
-        db.ref(`Usuarios/${cpf}`).set({
-            nome: nome,
-            sobreNome: sobreNome,
-            senha: senha,
-            email: email,
-            endereco: endereco,
-            numero: numero,
-            telefone: telefone
-        });
-        alert("Usuário cadastrado com sucesso!");
-        navigation.goBack();
-        // Handle the case where the user doesn't exist
-      }
-    }, (error) => { // Always handle errors!
-        console.error("Error fetching data:", error);
-    });
+    if (validarDados()) {
+      const dbRef = db.ref(`Usuarios/${cpf}`).once('value', (snapshot) => {
+        const userData = snapshot.val();
+        if (userData) { // Valida se o CPF já está cadastrado
+          alert("Usuário já cadastrado!")
+          setNome('');
+        } else {
+          db.ref(`Usuarios/${cpf}`).set({
+              nome: nome,
+              sobreNome: sobreNome,
+              senha: senha,
+              email: email,
+              endereco: endereco,
+              numero: numero,
+              telefone: telefone
+          });
+          alert("Usuário cadastrado com sucesso!");
+          navigation.goBack();
+        }
+      }, (error) => {
+          console.error("Erro:", error);
+      });
+    }
   }
 
   return (

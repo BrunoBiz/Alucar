@@ -7,18 +7,14 @@ import {
   Image
 } from "react-native";
 
+import { useNavigation } from '@react-navigation/native';
 import AlcMainInput from '../Components/AlcMainInput';
-import Title from '../Components/Title';
 import AlcButton from '../Components/AlcButton';
-import EstilosGlobais from '../Estilos/Globais';
 
 const TelaPerfil = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={StylesTelaPerfil.container}>
-        <View style={EstilosGlobais.title}>
-            <Title/>
-        </View>
-
         <View style={StylesTelaPerfil.viewPerfilImg}>
             <View style={StylesTelaPerfil.viewCircular}>
                 <Image source={require('../Icones/IconePerfil.png')} style={{width: '100%', height: '100%'}}/>
@@ -37,8 +33,15 @@ const TelaPerfil = () => {
             <AlcMainInput placeHolder={"Telefone"} flex={1}/>
         </View>
             <View style={{flexDirection: 'row', justifyContent:'center'}}>
-                <AlcButton text={"Confirmar"} flex={1} backgroundColor={'black'}/>
-                <AlcButton text={"Sair"} flex={1} backgroundColor={'black'}/>
+                <AlcButton 
+                  text={"Confirmar"} 
+                  flex={1} 
+                  backgroundColor={'black'}/>
+                <AlcButton 
+                  text={"Sair"} 
+                  flex={1} 
+                  backgroundColor={'black'} 
+                  onPress={() => navigation.goBack()}/>
             </View>
         </View>
     </SafeAreaView>
