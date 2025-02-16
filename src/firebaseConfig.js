@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app"; // Correct import for compat
 import "firebase/compat/firestore"; // Correct import for compat
 import "firebase/compat/database";  // Import for the Realtime Database
+import "firebase/compat/auth"; // Import auth specifically
 
 const firebaseConfig = {
     apiKey: "AIzaSyBto67r5JPtEboY2b-08v60GDsDHSpdAdg",
@@ -16,5 +17,6 @@ const firebaseConfig = {
 }
 
 const db = firebase.database();  // Get the Realtime Database instance
+const auth = firebase.auth();
 
-export { firebase, db, firebaseConfig };
+export { firebase, db, auth, firebaseConfig };

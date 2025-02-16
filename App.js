@@ -23,16 +23,6 @@ export default function App() {
     <NavigationContainer> 
       <MyStack /> 
     </NavigationContainer>
-
-
-
-    //<TelaLogin/>
-    //<TelaCadastro/>
-    //<TelaPrincipal/>
-    //<TelaDetalhesVeiculo/>
-    //<TelaPerfil/>
-    //<TelaListaVeiculos/>
-    //<TelaCheckout/>
   );
 }
 

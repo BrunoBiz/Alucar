@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import {firebaseConfig, db} from '../src/firebaseConfig';
+import React, { useState } from 'react';
+import { db, auth } from '../src/firebaseConfig';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import {
   StyleSheet,
@@ -9,9 +10,7 @@ import {
 } from "react-native";
 
 import AlcMainInput from '../Components/AlcMainInput';
-import Title from '../Components/Title';
 import AlcButton from '../Components/AlcButton';
-import EstilosGlobais from '../Estilos/Globais';
 
 const TelaCadastro = () => {
   const navigation = useNavigation();
@@ -68,31 +67,37 @@ const TelaCadastro = () => {
     return true
   }
 
-  function cadastrarDados(){
+  async function cadastrarDados(){
     if (validarDados()) {
-      const dbRef = db.ref(`Usuarios/${cpf}`).once('value', (snapshot) => {
-        const userData = snapshot.val();
-        if (userData) { // Valida se o CPF já está cadastrado
-          alert("Usuário já cadastrado!")
-          setNome('');
-        } else {
-          db.ref(`Usuarios/${cpf}`).set({
-              nome: nome,
-              sobreNome: sobreNome,
-              senha: senha,
-              email: email,
-              endereco: endereco,
-              numero: numero,
-              telefone: telefone
-          });
-          alert("Usuário cadastrado com sucesso!");
-          navigation.goBack();
-        }
-      }, (error) => {
-          console.error("Erro:", error);
+      try{
+        // Credenciais
+        const criarUsuario = await createUserWithEmailAndPassword(auth, email, senha);
+        const usuario = criarUsuario.user;
+        
+        // Id
+        const uid = usuario.uid
+      
+        // Permanencia
+        const dbRefUsuarios = db.ref(`Usuarios`)
+
+        dbRefUsuarios.child(uid).set({
+          nome: nome,
+          sobreNome: sobreNome,
+          cpf: cpf,
+          email: email, 
+          endereco: endereco,
+          numero: numero,
+          telefone: telefone
       });
+        
+      alert("Usuário cadastrado com sucesso!");
+      navigation.goBack();
+    } catch (error) {
+      console.error("Erro - Cadastro usuario", error)
+      Alert("Erro ao cadastrar usuário!")
     }
   }
+}
 
   return (
     <SafeAreaView style={StylesTelaCadastro.container}>
@@ -108,7 +113,8 @@ const TelaCadastro = () => {
         <AlcMainInput 
           placeHolder={"CPF"}
           value={cpf}
-          onChangeText={(cpf) => setCPF(cpf)}/>
+          onChangeText={(cpf) => setCPF(cpf)}
+          keyboardType={"numeric"}/>
         <AlcMainInput 
           placeHolder={"Senha"} 
           secureTextEntry={true}

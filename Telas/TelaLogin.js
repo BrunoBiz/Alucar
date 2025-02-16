@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import {db} from '../src/firebaseConfig';
+import { auth } from '../src/firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView
+  SafeAreaView,
+  Alert
 } from "react-native";
 
 import AlcMainInput from '../Components/AlcMainInput';
@@ -14,39 +17,40 @@ import AlcButton from '../Components/AlcButton';
 
 const TelaLogin = () => {
   const navigation = useNavigation();
-  const [cpf, setCPF] = useState('')
+  const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
-  
-  function validarUsuario() {
-    if (cpf == "" || senha == "" || cpf.length != 11) {
+  const [user, setUser] = useState('')
+
+  async function validarUsuario() {
+    if (email == "" || senha == "") {
       alert("Dados inválidos!");
       return;
     }
 
-    const refUsuario = db.ref(`Usuarios/${cpf}`).once('value', (snapshot) => {
-      const dataUsuario = snapshot.val();
-      if (dataUsuario) {
-        if (senha == dataUsuario.senha){
-          navigation.navigate('Home');
-        } else {
-          alert("Usuário/senha inválidos!");
-          return;
-        }
-      } else {
-        alert("Usuário/senha inválidos!");
-        return;
-      }
-    })
+    try {
+      const credenciaisUsuario = await signInWithEmailAndPassword(auth, email, senha)
+      const usuarioLogado = credenciaisUsuario.user;
+
+      // Armazena o ID
+      await AsyncStorage.setItem('uid', usuarioLogado.uid);
+      //console.log(usuarioLogado.uid)
+      
+      // Vai para tela principal
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error("Erro - Login usuario", error);
+      Alert.alert("Erro ao logar!", error.message); // Include error message for debugging
+    }
   }
 
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.inputs}>
           <AlcMainInput
-            placeHolder={"CPF"}
-            value={cpf}
-            onChangeText={(cpf) => setCPF(cpf)}
-            keyboardType={"numeric"}
+            placeHolder={"E-mail"}
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+            keyboardType={"email-address"}
           />
           <AlcMainInput
             placeHolder={"Senha"}
